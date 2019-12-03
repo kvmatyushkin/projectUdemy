@@ -1,20 +1,18 @@
-let money = prompt('Ваш бюджет на месяц?', '');
-let time = prompt('Введите дату в формате YYYY-MM-DD', '');
+let money = prompt('Ваш бюджет на месяц?', ''),
+    time = prompt('Введите дату в формате YYYY-MM-DD', ''),
+    necessarily = prompt('Введите обязательную статью расходов в этом месяц', ''),
+    necessarilyMoney = prompt('Во сколько обойдется?'),
+    appData = {
+        budget: money,
+        timeData: time,
+        expenses: {},
+        optionalExpenses:{},
+        income:[],
+        savings: false
+    };
 
-let appData = {
-    budget: money,
-    timeData: time,
-    expenses: {},
-    optionalExpenses:{},
-    income:[],
-    savings: false
-};
+appData.expenses[necessarily] = necessarilyMoney;
 
-let necessarily = prompt('Введите обязательную статью расходов в этом месяц', '');
-let necessarilyMoney = prompt('Во сколько обойдется?');
+console.log( appData.expenses );
 
-appData.expenses.necessarily = necessarilyMoney;
-
-console.log(`${(appData.budget - appData.expenses.necessarily) / 30}`);
-
-alert(`Бюджет на 1 день: ${(appData.budget - appData.expenses.necessarily) / 30} `);
+alert(`Бюджет на 1 день: ${(appData.budget - appData.expenses[necessarily]) / 30} `);
