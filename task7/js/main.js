@@ -27,7 +27,9 @@ let startBtn = document.getElementById('start'),
     monthValue = document.querySelector('.month-value'),
     dayValue = document.querySelector('.day-value');
 
-    console.log(chooseIncome);
+    expensesBtn.onclick();
+    
+    console.log(chooseExpenses);
 
     let money, time;
 
