@@ -44,7 +44,8 @@ let appData = {
     savings: false
 };
 
-startBtn.addEventListener('click', function(){
+//Начать расчет
+startBtn.addEventListener('click', function(){  
     time = prompt('Введите дату в формате YYYY-MM-DD', '');
     money = +prompt('Ваш бюджет на месяц?', '');
     
@@ -64,39 +65,33 @@ startBtn.addEventListener('click', function(){
     countBudgetBtn.disabled = false;
 });
 
+// Утвердить обязательные расходы
 expensesBtn.addEventListener('click', function() {
     let sum = 0;
-
     for (let i = 0; i < expensesItem.length; i++) {
         let a = expensesItem[i].value,
             b = expensesItem[++i].value;
         
-        if ( (typeof(a)) === 'string' && (typeof(a)) != null && (typeof(b)) != null 
-            && a != '' && b != '' && a.length < 50 ) {
+        if ( (typeof(a)) != null && (typeof(b)) != null && a != '' && b != '' && a.length < 50 ) {
             appData.expenses[a] = b;
             sum += +b;
         } else {
-            console.log('Попоробуй еще раз');
             i--;
         }
     }
     expensesValue.textContent = sum;
 });
 
+// Утвердить необязательные расходы
 optionalExpensesBtn.addEventListener('click', function(){
     for (let i = 0; i < optionalExpensesItem.length; i++) {
         let optExpenses = optionalExpensesItem[i].value;
-        
-        if ( (typeof(optExpenses)) === 'string' && (typeof(optExpenses)) != null && optExpenses != '' && optExpenses.length < 50 ) {
-            appData.expenses[i] = optExpenses;
-            optionalExpensesValue.textContent += optExpenses + ' ';
-        } else {
-            console.log('Попоробуй еще раз');
-            //i--;
-        }  
+        appData.expenses[i] = optExpenses;
+        optionalExpensesValue.textContent += optExpenses + ' '; 
     }
 });
 
+// Расчет дневного бюджета
 countBudgetBtn.addEventListener('click', function(){
     if (appData.budget != undefined) {
         appData.moneyPerDay = ( (appData.budget - +expensesValue.textContent) / 30).toFixed();
@@ -116,20 +111,17 @@ countBudgetBtn.addEventListener('click', function(){
     }
 });
 
+// статьи возможного дохода через запятую
 chooseIncome.addEventListener('input', function(){
     let items = chooseIncome.value;
 
-    if ((typeof(items)) !== 'string' || (typeof(items)) == null || items == ''){
-        console.log('Некорректные данные или их нету');
-    } else {
+    if (isNaN(items) || items != ''){
         appData.income = items.split(', ');
-        // appData.income.push(prompt('Может что-то еще?', ''));
-        // appData.income.sort();
+        incomeValue.textContent = appData.income;
     }
-    
-    incomeValue.textContent = appData.income;
 });
 
+// Есть ли накопления
 savingsCheckBox.addEventListener('click', function(){
     if ( appData.savings == true) {
         appData.savings = false;
@@ -138,6 +130,7 @@ savingsCheckBox.addEventListener('click', function(){
     }
 });
 
+// Сумма
 sumValue.addEventListener('input', function() {
     console.log(appData.savings);
     if (appData.savings == true) {
@@ -152,6 +145,7 @@ sumValue.addEventListener('input', function() {
     }
 });
 
+// Процент
 percentValue.addEventListener('input', function() {
     if (appData.savings == true) {
         let sum = +sumValue.value,
