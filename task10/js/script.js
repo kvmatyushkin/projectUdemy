@@ -40,7 +40,7 @@ window.addEventListener('DOMContentLoaded', () => {
 	});
 
 	//Timer
-	let deadLine = '2019-12-20';
+	let deadLine = '2019-12-25';
 	
 	function getTimeRemaining(endTime) {
 		let t = Date.parse(endTime) - Date.parse(new Date()),
@@ -68,8 +68,8 @@ window.addEventListener('DOMContentLoaded', () => {
 			let t = getTimeRemaining(endTime);
 			
 			function addZero(num){
-				if (num < 9) {
-					return '0' + num;
+				if (num < 10) {
+					return `0${num}`;
 				} else return num;
 			};
 
