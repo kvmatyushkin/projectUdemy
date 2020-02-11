@@ -4,8 +4,8 @@ window.addEventListener('DOMContentLoaded', () => {
 	'use strict';
 
 	let tab = document.querySelectorAll('.info-header-tab'),
-		info = document.querySelector('.info-header'),
-		tabContent = document.querySelectorAll('.info-tabcontent');
+			info = document.querySelector('.info-header'),
+			tabContent = document.querySelectorAll('.info-tabcontent');
 
 	// Скрываем табы
 	function hideTabContent(a) {
@@ -59,10 +59,10 @@ window.addEventListener('DOMContentLoaded', () => {
 
 	function setClock(id, endTime){
 		let timer = document.getElementById(id),
-			hours = timer.querySelector('.hours'),
-			minutes = timer.querySelector('.minutes'),
-			seconds = timer.querySelector('.seconds'),
-			timeInterval = setInterval(updateClock, 1000);
+				hours = timer.querySelector('.hours'),
+				minutes = timer.querySelector('.minutes'),
+				seconds = timer.querySelector('.seconds'),
+				timeInterval = setInterval(updateClock, 1000);
 		
 		function updateClock() {
 			let t = getTimeRemaining(endTime);
